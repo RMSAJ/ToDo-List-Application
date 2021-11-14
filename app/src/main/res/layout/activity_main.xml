@@ -6,21 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ExpandableListView
-        style="@android:style/Widget.ExpandableListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#D1B1B1"
-        android:cacheColorHint="#C14141"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
 
         <EditText
-            android:id="@+id/"
+            android:id="@+id/writing_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/hint"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="10dp"
+            android:shadowColor="@color/cardview_dark_background"
+            />
 
 
 
@@ -29,7 +34,7 @@
 
 
 
-    </ExpandableListView>
+
 
 
 
