@@ -6,12 +6,12 @@
     tools:context="com.example.todo_list_application.fragments.FirstPageFragment"
     >
     <data>
-    <variable
-        name=""
-        type="" />
-    <variable
-     name=""
-     type="" />
+        <variable
+            name="liveviewmodel"
+            type="com.example.todo_list_application.model.ListViewModel" />
+        <variable
+            name="firstpagefragment"
+            type="com.example.todo_list_application.fragments.FirstPageFragment" />
 
     </data>
 
@@ -61,7 +61,7 @@
         android:layout_height="0dp"
         android:layout_margin="8dp"
         android:scrollbars="vertical"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

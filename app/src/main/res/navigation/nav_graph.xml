@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstPageFragment">
+
+    <fragment
+        android:id="@+id/firstPageFragment"
+        android:name="com.example.todo_list_application.fragments.FirstPageFragment"
+        android:label="fragment_first_page"
+        tools:layout="@layout/fragment_first_page" />
+    <fragment
+        android:id="@+id/detail_List_Fragment"
+        android:name="com.example.todo_list_application.fragments.Detail_List_Fragment"
+        android:label="fragment_detail__list_"
+        tools:layout="@layout/fragment_detail__list_" />
+</navigation>

@@ -4,8 +4,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.todo_list_application.R
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
+import com.example.todo_list_application.model.ListViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,6 +21,8 @@ import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 class FirstPageFragment : Fragment() {
 
     private var binding: FragmentFirstPageBinding? = null
+
+    private val sharedViewModel : ListViewModel  by activityViewModels()
 
     // TODO: Rename and change types of parameters
 //    private var param1: String? = null
@@ -36,8 +40,19 @@ class FirstPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first_page, container, false)
+        val fragmentBinding = FragmentFirstPageBinding.inflate(inflater, container, false)
+        binding = fragmentBinding
+        return fragmentBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            liveviewmodel = sharedViewModel
+            firstpagefragment = this@FirstPageFragment
+        }
+
     }
 
 //    companion object {
