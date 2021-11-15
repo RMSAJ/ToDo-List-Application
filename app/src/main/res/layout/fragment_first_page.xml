@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.todo_list_application.fragments.FirstPageFragment"
+    >
+    <data>
+    <variable
+        name=""
+        type="" />
+    <variable
+     name=""
+     type="" />
+
+    </data>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FirstPageFragment">
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/writing_list"
+        app:helperTextTextAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:hint="@string/hint"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Edit_writing_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            />
 
-</FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Add"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
+        android:shadowColor="@color/cardview_dark_background"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todo_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:scrollbars="vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/writing_list"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem=""
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

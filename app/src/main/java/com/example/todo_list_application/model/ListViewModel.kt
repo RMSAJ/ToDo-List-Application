@@ -2,9 +2,10 @@ package com.example.todo_list_application.model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 
 class ListViewModel: ViewModel()  {
-
+private var binding: FragmentFirstPageBinding? = null
 // DEFINING LISTS QUANTITY
    private val _quantityOfList = MutableLiveData <Int>()
     val quantityOfList = _quantityOfList
