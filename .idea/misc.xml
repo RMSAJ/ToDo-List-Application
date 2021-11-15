@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/Mohd/AndroidStudioProjects/ToDoListApplication/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/Mohd/AndroidStudioProjects/ToDoListApplication/app/src/main/res/layout/activity_main.xml" value="0.15789473684210525" />
+        <entry key="..\:/Users/Mohd/AndroidStudioProjects/ToDoListApplication/app/src/main/res/layout/each_list.xml" value="0.26510416666666664" />
+        <entry key="..\:/Users/Mohd/AndroidStudioProjects/ToDoListApplication/app/src/main/res/layout/fragment_detail__item_.xml" value="0.1375" />
         <entry key="..\:/Users/Mohd/AndroidStudioProjects/ToDoListApplication/app/src/main/res/layout/fragment_detail__list_.xml" value="0.2" />
         <entry key="..\:/Users/Mohd/AndroidStudioProjects/ToDoListApplication/app/src/main/res/layout/fragment_first_page.xml" value="0.264" />
         <entry key="..\:/Users/Mohd/AndroidStudioProjects/ToDoListApplication/app/src/main/res/layout/item_list.xml" value="0.16757246376811594" />

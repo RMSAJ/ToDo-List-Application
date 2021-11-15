@@ -10,7 +10,7 @@ private var binding: FragmentFirstPageBinding? = null
    private val _quantityOfList = MutableLiveData <Int>()
     val quantityOfList = _quantityOfList
     // the title inserted by the user
-   private val _textInserted = MutableLiveData <Int>()
+   private val _textInserted = MutableLiveData <String>()
     val textInserted = _textInserted
     // date_to be made
    private val _dateAssigned = MutableLiveData <Int>()
@@ -19,8 +19,8 @@ private var binding: FragmentFirstPageBinding? = null
     fun setQuantity(){
 
     }
-    fun setText(){
-
+    fun setText() {
+        _textInserted.value
     }
     fun setDate(){
 

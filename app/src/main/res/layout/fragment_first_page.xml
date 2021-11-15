@@ -29,7 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint"
-        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
@@ -37,7 +36,8 @@
             android:id="@+id/Edit_writing_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine"
+            android:text="@{liveviewmodel.setText()}"
             android:maxLines="1"
             />
 
