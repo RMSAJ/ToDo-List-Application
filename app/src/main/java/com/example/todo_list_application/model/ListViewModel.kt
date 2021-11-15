@@ -2,6 +2,7 @@ package com.example.todo_list_application.model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.todo_list_application.data.DataValues
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 
 class ListViewModel: ViewModel()  {
@@ -19,12 +20,14 @@ private var binding: FragmentFirstPageBinding? = null
     fun setQuantity(){
 
     }
-    fun setText() {
-        _textInserted.value
+    fun setText(userInput : String) {
+        _textInserted.value = userInput
     }
-    fun setDate(){
+    fun setDate() {
 
     }
+
+
 
 
 

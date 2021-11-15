@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.todo_list_application.R
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 import com.example.todo_list_application.model.ListViewModel
@@ -53,6 +54,12 @@ class FirstPageFragment : Fragment() {
             firstpagefragment = this@FirstPageFragment
         }
 
+    }
+
+    fun sortText(){
+       val myText = binding?.EditWritingList?.text.toString()
+        sharedViewModel.setText(myText)
+        findNavController().navigate(R.id.action_firstPageFragment_to_detail_List_Fragment)
     }
 
 //    companion object {

@@ -37,7 +37,7 @@
                     android:layout_height="match_parent"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:text="" />
+                    android:text="@{liveviewmodel.textInserted}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -55,7 +55,7 @@
 
                     android:id="@+id/Edit_Descrition"
                     android:layout_width="match_parent"
-                    android:layout_height="346dp"
+                    android:layout_height="300dp"
                     android:inputType="textPersonName"
                     android:maxLines="1"
 
@@ -94,21 +94,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/Descrition" />
 
- <com.google.android.material.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancel_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginBottom="130dp"
+                android:backgroundTint="@color/purple_500"
                 android:text="@string/cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.478"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/save_continue_Button"
-                android:backgroundTint="@color/purple_500"
-     />
-
-
+                app:layout_constraintVertical_bias="1.0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

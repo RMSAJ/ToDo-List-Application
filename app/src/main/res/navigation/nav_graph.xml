@@ -9,7 +9,12 @@
         android:id="@+id/firstPageFragment"
         android:name="com.example.todo_list_application.fragments.FirstPageFragment"
         android:label="fragment_first_page"
-        tools:layout="@layout/fragment_first_page" />
+        tools:layout="@layout/fragment_first_page" >
+        <action
+            android:id="@+id/action_firstPageFragment_to_detail_List_Fragment"
+            app:destination="@id/detail_List_Fragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/detail_List_Fragment"
         android:name="com.example.todo_list_application.fragments.Detail_List_Fragment"
