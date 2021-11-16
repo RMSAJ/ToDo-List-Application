@@ -1,5 +1,6 @@
 package com.example.todo_list_application.fragments
 import android.os.Bundle
+import android.text.format.DateFormat.is24HourFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.todo_list_application.R
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 import com.example.todo_list_application.model.ListViewModel
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,23 +67,18 @@ class FirstPageFragment : Fragment() {
         findNavController().navigate(R.id.action_firstPageFragment_to_detail_List_Fragment)
     }
 
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment FirstPageFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            FirstPageFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
+    fun currentTime(){
+
+//        val is24HrsSystem = is24HourFormat(requireContext())
+//        val timeFormat = when(is24HrsSystem){
+//            true -> TimeFormat.CLOCK_24H
+//            else -> TimeFormat.CLOCK_12H
+
+        var dateTimePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("chose the date")
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .toString()
+    }
+
+
 }
