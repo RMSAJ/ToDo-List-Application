@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todo_list_application.R
+import com.example.todo_list_application.adapter.Adapterdo
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 import com.example.todo_list_application.model.ListViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -57,8 +58,10 @@ class FirstPageFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             liveviewmodel = sharedViewModel
             firstpagefragment = this@FirstPageFragment
-        }
 
+        }
+        binding?.todoRecycler?.adapter = Adapterdo(this.requireContext())
+        binding?.todoRecycler?.setHasFixedSize(true)
     }
 
     fun sortText(){
@@ -79,6 +82,11 @@ class FirstPageFragment : Fragment() {
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .toString()
     }
+
+//    fun applyingAdapter() {
+//
+//        binding?.todoRecycler?.adapter = Adapterdo(this.requireContext())
+//    }
 
 
 }

@@ -28,6 +28,7 @@
 
 
         <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/titleText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +41,7 @@
     android:id="@+id/finishedCheckBox"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:checked=""
+    android:onClick="@{() -> detailedFragment.isFinished() }"
     app:layout_constraintTop_toTopOf="parent"
     android:layout_marginTop="5dp"
     app:layout_constraintStart_toStartOf="parent"
@@ -49,13 +50,12 @@
     android:minHeight="0dp"
     />
 
-    <TextView
+    <TextClock
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/finishedCheckBox"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Testing"
         android:textColor="@color/black"/>
 
     <Button

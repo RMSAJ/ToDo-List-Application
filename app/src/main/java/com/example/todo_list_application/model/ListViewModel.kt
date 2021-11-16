@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.todo_list_application.data.DataValues
 import com.example.todo_list_application.data.myList
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 
 class ListViewModel: ViewModel()  {
 private var binding: FragmentFirstPageBinding? = null
@@ -32,30 +33,38 @@ private var binding: FragmentFirstPageBinding? = null
     }
 
     fun setText(userInput : String) {
-        _textInserted.value = userInput
         var clicks = 0
-        myList.set(clicks, DataValues(title = _textInserted.value!!))
+
+        _textInserted.value = userInput
+        myList.add(clicks, DataValues(title = _textInserted.value!!))
         ++clicks
     }
 
     fun setDate(currentDate: String) {
         _dateAssigned.value = currentDate
         var clicks = 0
-        myList.set(clicks, DataValues(date = _dateAssigned.value!!) )
+        myList.add(clicks, DataValues(date = _dateAssigned.value!!) )
         ++clicks
+    }
+
+    fun setInitialDate () {
+        _dateAssigned.value = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("chose the date")
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .toString()
     }
 
     fun setSsImportant(isColored: Boolean){
         _isImportant.value = isColored == true
         var clicks = 0
-        myList.set(clicks, DataValues(urgency = _isImportant.value!!))
+        myList.add(clicks, DataValues(urgency = _isImportant.value!!))
         ++clicks
     }
 
     fun setIsFinished(isChecked:Boolean){
       _isFinished.value = isChecked == true
       var clicks = 0
-      myList.set(clicks, DataValues(finishing = _isFinished.value!!))
+      myList.add(clicks, DataValues(finishing = _isFinished.value!!))
       ++clicks
     }
 

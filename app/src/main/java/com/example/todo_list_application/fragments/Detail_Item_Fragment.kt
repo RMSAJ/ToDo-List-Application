@@ -1,6 +1,7 @@
 package com.example.todo_list_application.fragments
 
 import android.content.res.ColorStateList
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,10 @@ import com.example.todo_list_application.databinding.FragmentDetailListBinding
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 import com.example.todo_list_application.model.ListViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.concurrent.timerTask
 import com.example.todo_list_application.R.color.lightYellow as lightYellow1
 
 // TODO: Rename parameter arguments, choose names that match
@@ -69,11 +74,43 @@ class Detail_Item_Fragment : Fragment() {
             sharedViewModel.setSsImportant(false)
         }
     }
-    fun isFinished(){
-        val checkingButton = binding?.finishedCheckBox?.isChecked
+    fun isFinished() {
+        var checkingButton = binding?.finishedCheckBox?.isChecked
         var count = 0
         if (count % 2 == 0) {
-
+        checkingButton = true
+            binding?.titleText?.paintFlags!!.or(Paint.STRIKE_THRU_TEXT_FLAG)
+            ++ count
+        } else {
+            checkingButton = false
         }
+        sharedViewModel.setIsFinished(checkingButton)
     }
+
+     fun convertMillisecondsToReadableDate(
+        dateMilliseconds: Long,
+        datePattern: String
+    ): String {
+        val format = SimpleDateFormat(datePattern, Locale.getDefault())
+        return format.format(Date(dateMilliseconds))
+    }
+
+
+    fun setTheDate() {
+        val datePicker =
+            MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
+
+        datePicker.show(parentFragmentManager, "datePicker").toString()
+        datePicker.addOnPositiveButtonClickListener {
+            val listDate = convertMillisecondsToReadableDate(it, "EEE, MMM d")
+        }
+
+
+    }
+
 }
+
+
