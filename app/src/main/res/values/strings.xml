@@ -8,4 +8,5 @@
     <string name="date">date</string>
     <string name="save_and_continue">Save and Continue</string>
     <string name="cancel">Cancel</string>
+    <string name="TitleinDetail">%s </string>
 </resources>

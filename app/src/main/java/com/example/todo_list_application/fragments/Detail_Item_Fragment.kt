@@ -44,6 +44,7 @@ class Detail_Item_Fragment : Fragment() {
              detailedFragment = this@Detail_Item_Fragment
         }
 
+
     }
 
 }

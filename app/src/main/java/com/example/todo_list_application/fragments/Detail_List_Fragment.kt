@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.todo_list_application.R
 import com.example.todo_list_application.databinding.FragmentDetailListBinding
+import com.example.todo_list_application.databinding.FragmentFirstPageBinding
+import com.example.todo_list_application.model.ListViewModel
 
 
 /**
@@ -16,8 +19,9 @@ import com.example.todo_list_application.databinding.FragmentDetailListBinding
  */
 class Detail_List_Fragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private val binding: FragmentDetailListBinding? = null
-
+    private var binding: FragmentDetailListBinding? = null
+    private val sharedViewModel : ListViewModel by activityViewModels()
+    //val  getInsertedText = sharedViewModel.textInserted.value
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        arguments?.let {
@@ -31,8 +35,22 @@ class Detail_List_Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail__list_, container, false)
+        val fragmentBinding = FragmentDetailListBinding.inflate(inflater, container, false)
+        binding = fragmentBinding
+        return fragmentBinding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            liveviewmodel = sharedViewModel
+            detailfragment = this@Detail_List_Fragment
+        }
+
+    }
+
+
 
 //    companion object {
 //        /**

@@ -1,5 +1,6 @@
 package com.example.todo_list_application.model
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.todo_list_application.data.DataValues
@@ -12,7 +13,7 @@ private var binding: FragmentFirstPageBinding? = null
     val quantityOfList = _quantityOfList
     // the title inserted by the user
    private val _textInserted = MutableLiveData <String>()
-    val textInserted = _textInserted
+    val textInserted: LiveData<String> = _textInserted
     // date_to be made
    private val _dateAssigned = MutableLiveData <Int>()
     val dateAssigned = _dateAssigned
