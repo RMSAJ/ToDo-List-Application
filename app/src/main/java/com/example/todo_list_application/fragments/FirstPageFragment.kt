@@ -1,10 +1,12 @@
 package com.example.todo_list_application.fragments
+import android.os.Build
 import android.os.Bundle
 import android.text.format.DateFormat.is24HourFormat
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todo_list_application.R
@@ -64,6 +66,7 @@ class FirstPageFragment : Fragment() {
         binding?.todoRecycler?.setHasFixedSize(true)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun sortText(){
        val myText = binding?.EditWritingList?.text.toString()
         sharedViewModel.setText(myText)

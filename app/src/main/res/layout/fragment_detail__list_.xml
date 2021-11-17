@@ -55,6 +55,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Edit_Descrition"
+                    android:gravity="start"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:inputType="textPersonName"
@@ -124,7 +125,7 @@
                 android:layout_marginTop="36dp"
                 style="?android:spinnerStyle"
                 android:text="NOV 17 20121"
-                android:onClick="openDatePicker"
+                android:onClick="@{() -> detailfragment.showDatePicker() }"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

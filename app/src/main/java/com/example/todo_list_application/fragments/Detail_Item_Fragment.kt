@@ -54,6 +54,8 @@ class Detail_Item_Fragment : Fragment() {
         }
 
 
+
+
 //        ColorStateList
     }
 
@@ -87,12 +89,12 @@ class Detail_Item_Fragment : Fragment() {
         sharedViewModel.setIsFinished(checkingButton)
     }
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 fun goEdite() {
    val requiredEdit = binding?.countNumber?.text
     sharedViewModel.getReqiredTitleonEditPress(requiredEdit.toString().toInt())
-    findNavController().navigate(R.id.action_detail_Item_Fragment_to_detail_List_Fragment)
-}
+
+ }
 
     fun convertMillisecondsToReadableDate(
         dateMilliseconds: Long,

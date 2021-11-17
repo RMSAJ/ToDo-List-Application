@@ -22,7 +22,7 @@ data class DataValues (
     val quntity: Int = 0,
     val title : String = "",
     val urgency: Boolean = false,
-    var _date: LocalDate? , //= Detail_List_Fragment().setTheDate()
+    var _date: String , //= Detail_List_Fragment().setTheDate()
     var finishing: Boolean = false,
     val detail: String = "",
     )

@@ -13,7 +13,10 @@ import java.time.LocalDate
 
 class ListViewModel: ViewModel()  {
 
- private   var clicks = 0
+ private   var clicksTitle = 0
+    private var dateClick = 0
+    private var importantClicke = 0
+    private var finishedClick = 0
 private var binding: FragmentFirstPageBinding? = null
 // DEFINING LISTS QUANTITY
    private var _quantityOfList = MutableLiveData <Int>()
@@ -22,7 +25,7 @@ private var binding: FragmentFirstPageBinding? = null
    private val _textInserted = MutableLiveData <String>()
     val textInserted: LiveData<String> = _textInserted
     // date_to be made
-   private val _dateAssigned = MutableLiveData <LocalDate>()
+   private val _dateAssigned = MutableLiveData <String>()
     val dateAssigned = _dateAssigned
     private val _isImportant = MutableLiveData<Boolean>()
     val isImportant = _isImportant
@@ -43,20 +46,19 @@ private var binding: FragmentFirstPageBinding? = null
     fun setText(userInput : String) {
 
         _textInserted.value = userInput
-        myList.add(clicks, DataValues(title = _textInserted.value!!, _date = _dateAssigned.value, quntity = clicks  ))
-        _quantityOfList.value = clicks
-       clicks++  }
+        myList.add(clicksTitle, DataValues(title = _textInserted.value!!, _date = _dateAssigned.value.toString(), quntity = clicksTitle  ))
+        _quantityOfList.value = clicksTitle
+        clicksTitle++  }
 
 //    fun editText() {
 //        myList.set(this)
 //    }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun setDate(currentDate: LocalDate) {
+    fun setDate(currentDate: String) {
         _dateAssigned.value = currentDate
-        var clicks = 0
-        myList.add(clicks, DataValues(_date = _dateAssigned.value!!) )
-        ++clicks
+         dateClick = 0
+        myList.add(dateClick, DataValues(_date = _dateAssigned.value!!) )
+        ++dateClick
     }
 
 //    fun setInitialDate () {
@@ -69,23 +71,23 @@ private var binding: FragmentFirstPageBinding? = null
     @RequiresApi(Build.VERSION_CODES.O)
     fun setSsImportant(isColored: Boolean){
         _isImportant.value = isColored == true
-        var clicks = 0
-        myList.add(clicks, DataValues(urgency = _isImportant.value!!, _date = _dateAssigned.value))
-        ++clicks
+        importantClicke  = 0
+        myList.add(importantClicke, DataValues(urgency = _isImportant.value!!, _date = _dateAssigned.value.toString()))
+        ++importantClicke
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun setIsFinished(isChecked:Boolean){
       _isFinished.value = isChecked == true
-      var clicks = 0
-      myList.add(clicks, DataValues(finishing = _isFinished.value!!, _date = _dateAssigned.value))
-      ++clicks
+       finishedClick = 0
+      myList.add(finishedClick, DataValues(finishing = _isFinished.value!!, _date = _dateAssigned.value.toString()))
+      ++finishedClick
     }
 
     fun getReqiredTitleonEditPress(requiredIndext: Int) {
 
         _textInserted.value = myList[requiredIndext].title
-        _dateAssigned.value = myList[requiredIndext]._date!!
+        _dateAssigned.value = myList[requiredIndext]._date
         _detailedText.value = myList[requiredIndext].detail
         _quantityOfList.value = myList[requiredIndext].quntity
         _isFinished.value = myList[requiredIndext].finishing
