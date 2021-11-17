@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import com.example.todo_list_application.R
@@ -39,16 +40,18 @@ class Detail_List_Fragment : Fragment() {
     companion object {
         val title = "title"
         val description = "description"
+        val dateToBeCompared = "dateToBeCompared"
     }
 
     lateinit var date: String
-
+     var dateToCompare: Long = 0
     //val  getInsertedText = sharedViewModel.textInserted.value
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             binding?.EditWritingList?.setText(it.getString(title))
             binding?.EditDescrition?.setText(it.getString(description))
+//            checkTaskDatePassed(it.getLong("dateToBeCompared"))
         }
 
     }
@@ -97,6 +100,8 @@ class Detail_List_Fragment : Fragment() {
             datePicker.show(parentFragmentManager, "DatePicker")
             datePicker.addOnPositiveButtonClickListener {
 
+                dateToCompare = it
+//                sharedViewModel.setDateToBeCompared(dateToCompare)
                 date = convertMillisecondsToReadableDate(it, "EEE, MMM dd ")
                 sharedViewModel.setDate(date)
             }
@@ -111,11 +116,13 @@ class Detail_List_Fragment : Fragment() {
 
 
         }
-//        fun getTitle() {
-//          val title =  binding?.EditWritingList?.text
-//            sharedViewModel.setText()
-//
-//        }
+    fun checkTaskDatePassed(taskDateInMilliSeconds: Long) {
+        if (getInstance().timeInMillis > taskDateInMilliSeconds) {
+            binding?.DateButton?.isVisible = false
+            println("Done")
+        }
+
+    }
 
         fun getDescription() {
 

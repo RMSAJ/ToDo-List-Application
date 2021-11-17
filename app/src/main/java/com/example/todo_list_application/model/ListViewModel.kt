@@ -9,7 +9,9 @@ import com.example.todo_list_application.data.DataValues
 import com.example.todo_list_application.data.myList
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.util.*
 
 class ListViewModel: ViewModel()  {
 
@@ -17,8 +19,14 @@ class ListViewModel: ViewModel()  {
     private var dateClick = 0
     private var importantClicke = 0
     private var finishedClick = 0
-private var binding: FragmentFirstPageBinding? = null
+    private var comparingCount = 0
+//private var binding: FragmentFirstPageBinding? = null
 // DEFINING LISTS QUANTITY
+
+//    private var _dateToBeCompared:Long = 0
+
+
+
    private var _quantityOfList = MutableLiveData <Int>()
     val quantityOfList: LiveData<Int> get() = _quantityOfList
     // the title inserted by the user
@@ -34,19 +42,21 @@ private var binding: FragmentFirstPageBinding? = null
     private val _detailedText = MutableLiveData<String>()
     val detailedText = _detailedText
 
-    fun setQuantity(){
+//    fun setDateToBeCompared(storevalue: Long) {
+//        _dateToBeCompared = storevalue
+//        myList.set(comparingCount, DataValues(dateComparing = _dateToBeCompared))
+//            comparingCount++
+//    }
 
-    }
-
-    fun setQuantityofList(){
-// used in the first page for the first init
-    }
+//    fun setQuantityofList(){
+//// used in the first page for the first init
+//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun setText(userInput : String) {
 
         _textInserted.value = userInput
-        myList.add(clicksTitle, DataValues(title = _textInserted.value!!, _date = _dateAssigned.value.toString(), quntity = clicksTitle  ))
+        myList.add(clicksTitle, DataValues(title = _textInserted.value!!, quntity = clicksTitle  ))
         _quantityOfList.value = clicksTitle
         clicksTitle++  }
 
@@ -54,9 +64,9 @@ private var binding: FragmentFirstPageBinding? = null
 //        myList.set(this)
 //    }
 
+
     fun setDate(currentDate: String) {
         _dateAssigned.value = currentDate
-         dateClick = 0
         myList.add(dateClick, DataValues(_date = _dateAssigned.value!!) )
         ++dateClick
     }
@@ -71,17 +81,15 @@ private var binding: FragmentFirstPageBinding? = null
     @RequiresApi(Build.VERSION_CODES.O)
     fun setSsImportant(isColored: Boolean){
         _isImportant.value = isColored == true
-        importantClicke  = 0
-        myList.add(importantClicke, DataValues(urgency = _isImportant.value!!, _date = _dateAssigned.value.toString()))
+        myList.add(importantClicke, DataValues(urgency = _isImportant.value!!))
         ++importantClicke
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun setIsFinished(isChecked:Boolean){
+
+    fun setIsFinished(isChecked:Boolean) {
       _isFinished.value = isChecked == true
-       finishedClick = 0
-      myList.add(finishedClick, DataValues(finishing = _isFinished.value!!, _date = _dateAssigned.value.toString()))
-      ++finishedClick
+      myList.add(finishedClick, DataValues(finishing = _isFinished.value!!))
+              ++finishedClick
     }
 
     fun getReqiredTitleonEditPress(requiredIndext: Int) {
@@ -93,6 +101,16 @@ private var binding: FragmentFirstPageBinding? = null
         _isFinished.value = myList[requiredIndext].finishing
         _isImportant.value = myList[requiredIndext].urgency
 
+    }
+
+    fun currentDateTime():String {
+        val options : String
+        val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())
+        val calendar = Calendar.getInstance()
+            options = formatter.format(calendar.time)
+
+
+        return options
     }
 
 }

@@ -54,12 +54,13 @@ private val itemLists: MutableList<DataValues> = myList) : RecyclerView.Adapter<
 
         }
 
-
+        // dATE COMPORE FRAM START TO DETail
         holder.editButtonView?.setOnClickListener {
             val action = FirstPageFragmentDirections.actionFirstPageFragmentToDetailListFragment (
                 title = item.title,
-                description = item.detail  )
-
+                description = item.detail
+//                dateToBeCompared = item.dateComparing)
+            )
             holder.itemView.findNavController().navigate(action)
         }
     }
