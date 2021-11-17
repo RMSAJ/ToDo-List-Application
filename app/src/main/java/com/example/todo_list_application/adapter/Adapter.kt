@@ -1,17 +1,20 @@
 package com.example.todo_list_application.adapter
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo_list_application.R
 import com.example.todo_list_application.data.DataValues
 import com.example.todo_list_application.data.myList
+import com.example.todo_list_application.fragments.Detail_Item_Fragment
 import javax.sql.DataSource
 
 class Adapterdo(
@@ -25,6 +28,7 @@ class DoListViewHolder(val view: View?) :RecyclerView.ViewHolder(view!!){
       val editButtonView: Button? = view?.findViewById(R.id.editButton)
       val titleView: TextView? = view?.findViewById(R.id.titleText)
       val cardView: CardView? = view?.findViewById(R.id.mainItemCard)
+      val numberedView: TextView? = view?.findViewById(R.id.countNumber)
 
 
     }
@@ -34,11 +38,15 @@ class DoListViewHolder(val view: View?) :RecyclerView.ViewHolder(view!!){
         return DoListViewHolder(adpterLayout)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: DoListViewHolder, position: Int) {
         val item = itemLists[position]
-        holder.checkView?.isChecked = item.urgency
+        holder.checkView?.isChecked = item.finishing
+        holder.numberedView?.text = item.quntity.toString()
         holder.titleView?.text = item.title
-        holder.dateTextView?.text = item.date
+        holder.dateTextView?.text = item._date.toString()
+        holder.editButtonView?.setOnClickListener {
+            Detail_Item_Fragment().goEdite() }
     }
 
     override fun getItemCount(): Int {

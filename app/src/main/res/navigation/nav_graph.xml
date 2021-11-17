@@ -19,5 +19,17 @@
         android:id="@+id/detail_List_Fragment"
         android:name="com.example.todo_list_application.fragments.Detail_List_Fragment"
         android:label="fragment_detail__list_"
-        tools:layout="@layout/fragment_detail__list_" />
+        tools:layout="@layout/fragment_detail__list_" >
+        <action
+            android:id="@+id/action_detail_List_Fragment_to_firstPageFragment"
+            app:destination="@id/firstPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail_Item_Fragment"
+        android:name="com.example.todo_list_application.fragments.Detail_Item_Fragment"
+        android:label="Detail_Item_Fragment" >
+        <action
+            android:id="@+id/action_detail_Item_Fragment_to_detail_List_Fragment"
+            app:destination="@id/detail_List_Fragment" />
+    </fragment>
 </navigation>
