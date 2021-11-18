@@ -52,13 +52,11 @@ private val itemLists: MutableList<DataValues> = myList) : RecyclerView.Adapter<
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: DoListViewHolder, position: Int) {
         val item = itemLists[position]
-        holder.checkView?.setOnClickListener { Detail_Item_Fragment().isFinished() }
+        holder.checkView?.setOnClickListener { item.finishing }
         holder.numberedView?.text = item.quntity.toString()
         holder.titleView?.text = item.title
         holder.dateTextView?.text = item._date
-        holder.cardView?.setOnClickListener {
-        Detail_Item_Fragment().onCardClick()
-        }
+
         holder.deletButton?.setOnClickListener {
             itemLists.removeAt(position)
             notifyDataSetChanged()

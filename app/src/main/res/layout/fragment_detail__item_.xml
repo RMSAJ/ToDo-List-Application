@@ -16,6 +16,8 @@
 <com.google.android.material.card.MaterialCardView
     android:id="@+id/mainItemCard"
     android:layout_margin="8dp"
+    android:clickable="true"
+    android:onClick="@{() -> detailedFragment.onCardClick()}"
     android:backgroundTint="@color/white"
     android:layout_width="match_parent"
     android:layout_height="90dp"

@@ -82,6 +82,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_continue_Button"
                 android:layout_width="0dp"
+                android:onClick="@{() -> detailfragment.returnToStartPage()}"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginBottom="170dp"
@@ -100,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginBottom="130dp"
+                android:onClick="@{() -> detailfragment.returnToStartPage()}"
                 android:backgroundTint="@color/grey"
                 android:text="@string/cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
