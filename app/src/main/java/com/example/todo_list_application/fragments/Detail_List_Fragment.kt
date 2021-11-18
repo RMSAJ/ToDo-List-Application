@@ -129,19 +129,17 @@ class Detail_List_Fragment : Fragment() {
             return format.format(Date(dateMilliseconds))
         }
 
-//        fun getDate() {
-//            // Create the date picker builder and set the title
-//           val datePicker = MaterialDatePicker.Builder.datePicker()
-//               .setTitleText("Select Activity date")
-//               .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-//               .setInputMode(MaterialDatePicker.INPUT_MODE_TEXT)
-//               .build()
-//                datePicker.show(parentFragmentManager, "datePicker")
-//            datePicker.addOnPositiveButtonClickListener {
-//               date = convertMillisecondsToReadableDate(it, "EEE, MMM d ")
-//            }
-//            datePicker.selection
-//        }
+
+    override fun onDestroy() {
+       val myTitle = binding?.EditWritingList?.text.toString()
+        val mydesrition = binding?.EditDescrition?.text.toString()
+
+        sharedViewModel.setTitleEdited(myTitle)
+
+        super.onDestroy()
+    }
+
+
 
         fun SaveButten() {
 

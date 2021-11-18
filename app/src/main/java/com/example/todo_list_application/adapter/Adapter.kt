@@ -1,5 +1,6 @@
 package com.example.todo_list_application.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
@@ -33,7 +35,10 @@ private val itemLists: MutableList<DataValues> = myList) : RecyclerView.Adapter<
         val titleView: TextView? = view?.findViewById(R.id.titleText)
         val cardView: CardView? = view?.findViewById(R.id.mainItemCard)
         val numberedView: TextView? = view?.findViewById(R.id.countNumber)
+        val deletButton: ImageView? = view?.findViewById(R.id.deleteImage)
 
+//        val detailTitle: TextView? = view?.findViewById(R.id.Edit_writing_list)
+//        val detaiButton: Button? = view?.findViewById(R.id.save_continue_Button)
 
     }
 
@@ -43,22 +48,28 @@ private val itemLists: MutableList<DataValues> = myList) : RecyclerView.Adapter<
         return DoListViewHolder(adpterLayout)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: DoListViewHolder, position: Int) {
         val item = itemLists[position]
-        holder.checkView?.isChecked = item.finishing
+        holder.checkView?.setOnClickListener { Detail_Item_Fragment().isFinished() }
         holder.numberedView?.text = item.quntity.toString()
         holder.titleView?.text = item.title
-        holder.dateTextView?.text = item._date.toString()
+        holder.dateTextView?.text = item._date
         holder.cardView?.setOnClickListener {
-
+        Detail_Item_Fragment().onCardClick()
+        }
+        holder.deletButton?.setOnClickListener {
+            itemLists.removeAt(position)
+            notifyDataSetChanged()
         }
 
 
         holder.editButtonView?.setOnClickListener {
             val action = FirstPageFragmentDirections.actionFirstPageFragmentToDetailListFragment (
                 title = item.title,
-                description = item.detail  )
+                description = item.detail
+                    )
 
             holder.itemView.findNavController().navigate(action)
         }

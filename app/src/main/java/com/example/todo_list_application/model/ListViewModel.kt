@@ -9,7 +9,9 @@ import com.example.todo_list_application.data.DataValues
 import com.example.todo_list_application.data.myList
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
 import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.util.*
 
 class ListViewModel: ViewModel()  {
 
@@ -43,36 +45,48 @@ private var binding: FragmentFirstPageBinding? = null
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun setText(userInput : String) {
+    fun addTextTitle(userInput : String) {
 
         _textInserted.value = userInput
         myList.add(clicksTitle, DataValues(title = _textInserted.value!!, _date = _dateAssigned.value.toString(), quntity = clicksTitle  ))
         _quantityOfList.value = clicksTitle
         clicksTitle++  }
 
-//    fun editText() {
-//        myList.set(this)
-//    }
+fun setTitleEdited(newTitle: String) {
+    _textInserted.value = newTitle
+    myList.set(clicksTitle-1, DataValues(title = _textInserted.value.toString())  )
+
+}
+
+    fun setDecription (newDecription: String){
+        _detailedText.value = newDecription
+        myList.set(clicksTitle-1, DataValues(detail = _detailedText.value.toString()))
+    }
+
+
 
     fun setDate(currentDate: String) {
         _dateAssigned.value = currentDate
-         dateClick = 0
-        myList.add(dateClick, DataValues(_date = _dateAssigned.value!!) )
-        ++dateClick
+
+        myList.set(clicksTitle-1, DataValues(_date = _dateAssigned.value!!) )
+
     }
 
-//    fun setInitialDate () {
-//        _dateAssigned.value = MaterialDatePicker.Builder.datePicker()
-//            .setTitleText("chose the date")
-//            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-//
-//    }
+     fun getPickupOptions(): String {
+        val options : String
+        val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())
+        val calendar = Calendar.getInstance()
+
+            options = (formatter.format(calendar.time))
+
+
+        return options
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun setSsImportant(isColored: Boolean){
+    fun setSsImportant(isColored: Boolean) {
         _isImportant.value = isColored == true
-        importantClicke  = 0
-        myList.add(importantClicke, DataValues(urgency = _isImportant.value!!, _date = _dateAssigned.value.toString()))
+        myList.add(importantClicke, DataValues(urgency = _isImportant.value!!))
         ++importantClicke
     }
 
@@ -80,7 +94,7 @@ private var binding: FragmentFirstPageBinding? = null
     fun setIsFinished(isChecked:Boolean){
       _isFinished.value = isChecked == true
        finishedClick = 0
-      myList.add(finishedClick, DataValues(finishing = _isFinished.value!!, _date = _dateAssigned.value.toString()))
+      myList.add(finishedClick, DataValues(finishing = _isFinished.value!!))
       ++finishedClick
     }
 

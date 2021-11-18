@@ -1,5 +1,6 @@
 package com.example.todo_list_application.fragments
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Paint
 import android.os.Build
@@ -15,7 +16,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todo_list_application.R
-import com.example.todo_list_application.R.color.design_default_color_background
+import com.example.todo_list_application.R.color.*
 import com.example.todo_list_application.databinding.FragmentDetailItemBinding
 import com.example.todo_list_application.databinding.FragmentDetailListBinding
 import com.example.todo_list_application.databinding.FragmentFirstPageBinding
@@ -32,6 +33,9 @@ import com.example.todo_list_application.R.color.lightYellow as lightYellow1
 
 
 class Detail_Item_Fragment : Fragment() {
+    var isImportantcount = 0
+    var finishCount = 0
+
     private var binding: FragmentDetailItemBinding? = null
 
     private val sharedViewModel: ListViewModel by activityViewModels()
@@ -53,40 +57,39 @@ class Detail_Item_Fragment : Fragment() {
             detailedFragment = this@Detail_Item_Fragment
         }
 
-
-
-
-//        ColorStateList
     }
 
+    @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.O)
     fun onCardClick() {
-        var theColor = binding?.mainItemCard?.checkedIconTint
+        var theColor = binding?.mainItemCard?.background?.setTint(lightYellow1)
 
-        var count = 0
-        if (count % 2 == 0) {
-            theColor = ColorStateList.valueOf("@color/lightYellow".toColorInt())
+
+        if (isImportantcount % 2 == 0) {
+            theColor
             sharedViewModel.setSsImportant(true)
-            ++count
+            ++isImportantcount
         } else {
 
-            resources.getColor(design_default_color_background)
+            binding?.mainItemCard?.background?.setTint(white)
             sharedViewModel.setSsImportant(false)
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun isFinished() {
-        var checkingButton = binding?.finishedCheckBox?.isChecked
-        var count = 0
-        if (count % 2 == 0) {
-            checkingButton = true
+        var checkingButton = binding?.titleText?.paintFlags!!.or(Paint.STRIKE_THRU_TEXT_FLAG)
+
+        if (finishCount % 2 == 0) {
             binding?.titleText?.paintFlags!!.or(Paint.STRIKE_THRU_TEXT_FLAG)
-            ++count
+            sharedViewModel.setIsFinished(true)
+            checkingButton
+            ++finishCount
         } else {
-            checkingButton = false
+            sharedViewModel.setIsFinished(isChecked = false)
+
         }
-        sharedViewModel.setIsFinished(checkingButton)
+
     }
 
 

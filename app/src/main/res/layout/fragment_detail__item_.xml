@@ -16,12 +16,12 @@
 <com.google.android.material.card.MaterialCardView
     android:id="@+id/mainItemCard"
     android:layout_margin="8dp"
+    android:backgroundTint="@color/white"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:clickable="true"
-    android:onClick="@{() -> detailedFragment.onCardClick() }"
+
     tools:context=".fragments.Detail_Item_Fragment"
-    android:focusable="true">
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -33,7 +33,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="@{listviewmodel.textInserted}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/finishedCheckBox"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +45,6 @@
             android:layout_marginTop="5dp"
             android:minWidth="0dp"
             android:minHeight="0dp"
-            android:onClick="@{() -> detailedFragment.isFinished() }"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,6 +78,15 @@
             android:text="0"
             android:layout_margin="10dp"/>
 
+        <ImageView
+            android:id="@+id/deleteImage"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editButton"
+            app:srcCompat="@drawable/ic_baseline_delete_24" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

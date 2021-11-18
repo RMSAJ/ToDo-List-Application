@@ -18,15 +18,6 @@ import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePic
 import com.google.android.material.timepicker.MaterialTimePicker
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FirstPageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FirstPageFragment : Fragment() {
 
     private var binding: FragmentFirstPageBinding? = null
@@ -69,27 +60,27 @@ class FirstPageFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun sortText(){
        val myText = binding?.EditWritingList?.text.toString()
-        sharedViewModel.setText(myText)
+        sharedViewModel.addTextTitle(myText)
         findNavController().navigate(R.id.action_firstPageFragment_to_detail_List_Fragment)
     }
 
-    fun currentTime(){
-
-//        val is24HrsSystem = is24HourFormat(requireContext())
-//        val timeFormat = when(is24HrsSystem){
-//            true -> TimeFormat.CLOCK_24H
-//            else -> TimeFormat.CLOCK_12H
-
-        var dateTimePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("chose the date")
-            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-            .toString()
-    }
+    fun currentTime() {
+//
+////        val is24HrsSystem = is24HourFormat(requireContext())
+////        val timeFormat = when(is24HrsSystem){
+////            true -> TimeFormat.CLOCK_24H
+////            else -> TimeFormat.CLOCK_12H
+//
+//        var dateTimePicker = MaterialDatePicker.Builder.datePicker()
+//            .setTitleText("chose the date")
+//            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+//            .toString()
+//    }
 
 //    fun applyingAdapter() {
 //
 //        binding?.todoRecycler?.adapter = Adapterdo(this.requireContext())
 //    }
-
+    }
 
 }
