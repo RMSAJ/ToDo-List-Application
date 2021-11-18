@@ -26,14 +26,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.Calendar.*
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Detail_List_Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Detail_List_Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var binding: FragmentDetailListBinding? = null
     private val sharedViewModel: ListViewModel by activityViewModels()
 
@@ -57,7 +51,7 @@ class Detail_List_Fragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val fragmentBinding = FragmentDetailListBinding.inflate(inflater, container, false)
         binding = fragmentBinding
@@ -91,7 +85,6 @@ class Detail_List_Fragment : Fragment() {
         }
     }
         fun showDatePicker() {
-
             val datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select").setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                 .build()
@@ -108,15 +101,8 @@ class Detail_List_Fragment : Fragment() {
                 val format = SimpleDateFormat(datePattern, Locale.getDefault())
                 return format.format(Date(dateMilliseconds))
             }
-
-
-
         }
-//        fun getTitle() {
-//          val title =  binding?.EditWritingList?.text
-//            sharedViewModel.setText()
-//
-//        }
+
 
         fun onCancelingandSave () {
             val myTitle = binding?.EditWritingList?.text.toString()
@@ -166,22 +152,5 @@ class Detail_List_Fragment : Fragment() {
 //    }
 
 
-//    companion object {
-        /**
-        //         * Use this factory method to create a new instance of
-        //         * this fragment using the provided parameters.
-        //         *
-        //         * @param param1 Parameter 1.
-        //         * @param param2 Parameter 2.
-        //         * @return A new instance of fragment Detail_List_Fragment.
-        //         */
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            Detail_List_Fragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
     }
 

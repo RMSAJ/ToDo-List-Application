@@ -63,14 +63,11 @@ class Detail_Item_Fragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun onCardClick() {
         var theColor = binding?.mainItemCard?.background?.setTint(lightYellow1)
-
-
         if (isImportantcount % 2 == 0) {
             theColor
             sharedViewModel.setSsImportant(true)
             ++isImportantcount
         } else {
-
             binding?.mainItemCard?.background?.setTint(white)
             sharedViewModel.setSsImportant(false)
         }
@@ -79,7 +76,6 @@ class Detail_Item_Fragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun isFinished() {
         var checkingButton = binding?.titleText?.paintFlags!!.or(Paint.STRIKE_THRU_TEXT_FLAG)
-
         if (finishCount % 2 == 0) {
             binding?.titleText?.paintFlags!!.or(Paint.STRIKE_THRU_TEXT_FLAG)
             sharedViewModel.setIsFinished(true)
@@ -87,11 +83,8 @@ class Detail_Item_Fragment : Fragment() {
             ++finishCount
         } else {
             sharedViewModel.setIsFinished(isChecked = false)
-
         }
-
     }
-
 
 fun goEdite() {
    val requiredEdit = binding?.countNumber?.text
@@ -99,7 +92,7 @@ fun goEdite() {
 
  }
 
-    fun convertMillisecondsToReadableDate(
+ fun convertMillisecondsToReadableDate(
         dateMilliseconds: Long,
         datePattern: String
     ): String {

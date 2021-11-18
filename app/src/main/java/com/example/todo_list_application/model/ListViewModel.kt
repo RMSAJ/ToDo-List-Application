@@ -36,14 +36,6 @@ private var binding: FragmentFirstPageBinding? = null
     private val _detailedText = MutableLiveData<String>()
     val detailedText = _detailedText
 
-    fun setQuantity(){
-
-    }
-
-    fun setQuantityofList(){
-// used in the first page for the first init
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun addTextTitle(userInput : String) {
 
@@ -55,7 +47,6 @@ private var binding: FragmentFirstPageBinding? = null
 fun setTitleEdited(newTitle: String) {
     _textInserted.value = newTitle
     myList.set(clicksTitle-1, DataValues(title = _textInserted.value.toString())  )
-
 }
 
     fun setDecription (newDecription: String){
@@ -63,23 +54,16 @@ fun setTitleEdited(newTitle: String) {
         myList.set(clicksTitle-1, DataValues(detail = _detailedText.value.toString()))
     }
 
-
-
     fun setDate(currentDate: String) {
         _dateAssigned.value = currentDate
-
         myList.set(clicksTitle-1, DataValues(_date = _dateAssigned.value!!) )
-
     }
 
      fun getPickupOptions(): String {
         val options : String
         val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())
         val calendar = Calendar.getInstance()
-
             options = (formatter.format(calendar.time))
-
-
         return options
     }
 
@@ -99,14 +83,11 @@ fun setTitleEdited(newTitle: String) {
     }
 
     fun getReqiredTitleonEditPress(requiredIndext: Int) {
-
         _textInserted.value = myList[requiredIndext].title
         _dateAssigned.value = myList[requiredIndext]._date
         _detailedText.value = myList[requiredIndext].detail
         _quantityOfList.value = myList[requiredIndext].quntity
         _isFinished.value = myList[requiredIndext].finishing
         _isImportant.value = myList[requiredIndext].urgency
-
     }
-
 }
