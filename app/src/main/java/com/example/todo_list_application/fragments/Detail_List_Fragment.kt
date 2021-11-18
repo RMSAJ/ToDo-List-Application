@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.todo_list_application.R
 import com.example.todo_list_application.data.myList
 import com.example.todo_list_application.databinding.FragmentDetailListBinding
@@ -117,7 +118,12 @@ class Detail_List_Fragment : Fragment() {
 //
 //        }
 
-        fun getDescription() {
+        fun onCancelingandSave () {
+            val myTitle = binding?.EditWritingList?.text.toString()
+            val mydesrition = binding?.EditDescrition?.text.toString()
+
+            sharedViewModel.setTitleEdited(myTitle)
+            findNavController().navigate(R.id.action_detail_List_Fragment_to_firstPageFragment)
 
         }
 
