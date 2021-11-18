@@ -62,9 +62,8 @@ class Detail_Item_Fragment : Fragment() {
     @SuppressLint("ResourceAsColor")
     @RequiresApi(Build.VERSION_CODES.O)
     fun onCardClick() {
-        var theColor = binding?.mainItemCard?.background?.setTint(lightYellow1)
         if (isImportantcount % 2 == 0) {
-            theColor
+            binding?.mainItemCard?.setBackgroundColor(R.color.black)
             sharedViewModel.setSsImportant(true)
             ++isImportantcount
         } else {

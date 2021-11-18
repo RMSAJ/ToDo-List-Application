@@ -20,6 +20,8 @@ import com.google.android.material.timepicker.MaterialTimePicker
 
 class FirstPageFragment : Fragment() {
 
+
+
     private var binding: FragmentFirstPageBinding? = null
 
     private val sharedViewModel : ListViewModel  by activityViewModels()
@@ -33,6 +35,7 @@ class FirstPageFragment : Fragment() {
         return fragmentBinding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
@@ -42,6 +45,7 @@ class FirstPageFragment : Fragment() {
         }
         binding?.todoRecycler?.adapter = Adapterdo(this.requireContext())
         binding?.todoRecycler?.setHasFixedSize(true)
+//        val cardClicking = Detail_Item_Fragment().onCardClick()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

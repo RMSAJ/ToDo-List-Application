@@ -37,6 +37,7 @@ class Detail_List_Fragment : Fragment() {
     }
 
     lateinit var date: String
+     var comparable: Long = 0
 
     //val  getInsertedText = sharedViewModel.textInserted.value
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +57,7 @@ class Detail_List_Fragment : Fragment() {
         val fragmentBinding = FragmentDetailListBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,6 +83,7 @@ class Detail_List_Fragment : Fragment() {
 
             }
 
+            compareTime()
 
         }
     }
@@ -90,9 +93,10 @@ class Detail_List_Fragment : Fragment() {
                 .build()
             datePicker.show(parentFragmentManager, "DatePicker")
             datePicker.addOnPositiveButtonClickListener {
-
+                comparable = it
                 date = convertMillisecondsToReadableDate(it, "EEE, MMM dd ")
                 sharedViewModel.setDate(date)
+                sharedViewModel.storedateBeCompared(comparable)
             }
              fun convertMillisecondsToReadableDate(
                 dateMilliseconds: Long,
@@ -104,14 +108,19 @@ class Detail_List_Fragment : Fragment() {
         }
 
 
-        fun onCancelingandSave () {
+        fun onSave () {
             val myTitle = binding?.EditWritingList?.text.toString()
             val mydesrition = binding?.EditDescrition?.text.toString()
-
+            val changedDate = binding?.DateButton?.text.toString()
+            sharedViewModel.setDate(changedDate)
             sharedViewModel.setTitleEdited(myTitle)
-            findNavController().navigate(R.id.action_detail_List_Fragment_to_firstPageFragment)
 
+            findNavController().navigate(R.id.action_detail_List_Fragment_to_firstPageFragment)
         }
+
+    fun onCancel() {
+        findNavController().navigate(R.id.action_detail_List_Fragment_to_firstPageFragment)
+    }
 
         private fun convertMillisecondsToReadableDate(
             dateMilliseconds: Long,
@@ -125,11 +134,27 @@ class Detail_List_Fragment : Fragment() {
     override fun onDestroy() {
        val myTitle = binding?.EditWritingList?.text.toString()
         val mydesrition = binding?.EditDescrition?.text.toString()
+        val changedDate = binding?.DateButton?.text.toString()
 
         sharedViewModel.setTitleEdited(myTitle)
-
+        sharedViewModel.setDate(changedDate)
         super.onDestroy()
     }
+
+fun compareTime() {
+
+    if (sharedViewModel._comparing.value == null) {
+        Toast.makeText(context,"pls chose Date",Toast.LENGTH_LONG).show()
+    }
+
+    else if (sharedViewModel._comparing.value!! < getInstance().timeInMillis  ) {
+        Toast.makeText(context,"Times up!!!!!! ",Toast.LENGTH_LONG).show()
+    }
+
+    else Toast.makeText(context,"GooodBooy",Toast.LENGTH_LONG).show()
+
+}
+
 
 
 

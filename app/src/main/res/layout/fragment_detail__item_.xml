@@ -10,16 +10,19 @@
         <variable
             name="detailedFragment"
             type="com.example.todo_list_application.fragments.Detail_Item_Fragment" />
+        <import type="android.view.View"
+            />
         
     </data>
 
 <com.google.android.material.card.MaterialCardView
     android:id="@+id/mainItemCard"
     android:layout_margin="8dp"
-    android:backgroundTint="@color/white"
+    android:checkable="true"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-
     tools:context=".fragments.Detail_Item_Fragment"
     >
 
@@ -64,7 +67,6 @@
 
             android:layout_marginBottom="4dp"
             android:backgroundTint="@color/teal_700"
-
             android:text="Edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

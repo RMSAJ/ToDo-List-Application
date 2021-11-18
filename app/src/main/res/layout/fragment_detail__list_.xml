@@ -55,14 +55,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/Edit_Descrition"
-                    android:gravity="start"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:gravity="start"
                     android:inputType="textPersonName"
                     android:text="@{liveviewmodel.detailedText}"
 
 
-                    />
+                    tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -77,16 +77,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/writing_title_list" />
 
 
-
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_continue_Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginBottom="170dp"
-                android:onClick="@{() -> detailfragment.onCancelingandSave}"
+                android:layout_marginBottom="120dp"
                 android:backgroundTint="@color/teal_700"
+                android:onClick="@{() -> detailfragment.onSave()}"
                 android:text="@string/save_and_continue"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -100,13 +98,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginBottom="130dp"
-                android:onClick="@{() -> detailfragment.onCancelingandSave}"
+                android:layout_marginBottom="70dp"
                 android:backgroundTint="@color/grey"
+                android:onClick="@{() -> detailfragment.onCancel()}"
                 android:text="@string/cancel"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.478"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/save_continue_Button"
                 app:layout_constraintVertical_bias="1.0" />
@@ -132,9 +129,12 @@
                 android:textColor="@color/black"
                 app:icon="@drawable/ic_baseline_calendar_today_24"
                 app:iconTint="#531010"
+                app:layout_constraintBottom_toTopOf="@+id/save_continue_Button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Descrition" />
+                app:layout_constraintTop_toBottomOf="@+id/Descrition"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="SpeakableTextPresentCheck" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

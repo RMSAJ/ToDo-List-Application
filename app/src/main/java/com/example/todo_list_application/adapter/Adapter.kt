@@ -6,10 +6,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
@@ -21,6 +18,9 @@ import com.example.todo_list_application.fragments.Detail_Item_Fragment
 import com.example.todo_list_application.fragments.Detail_Item_FragmentDirections
 import com.example.todo_list_application.fragments.Detail_List_Fragment.Companion.title
 import com.example.todo_list_application.fragments.FirstPageFragmentDirections
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import javax.sql.DataSource
 
 class Adapterdo(
@@ -37,7 +37,7 @@ private val itemLists: MutableList<DataValues> = myList) : RecyclerView.Adapter<
         val numberedView: TextView? = view?.findViewById(R.id.countNumber)
         val deletButton: ImageView? = view?.findViewById(R.id.deleteImage)
 
-//        val detailTitle: TextView? = view?.findViewById(R.id.Edit_writing_list)
+       val detailTitle: TextView? = view?.findViewById(R.id.Edit_writing_list)
 //        val detaiButton: Button? = view?.findViewById(R.id.save_continue_Button)
 
     }

@@ -35,19 +35,21 @@ private var binding: FragmentFirstPageBinding? = null
     val isFinished = _isFinished
     private val _detailedText = MutableLiveData<String>()
     val detailedText = _detailedText
+    val _comparing =  MutableLiveData<Long>()
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun addTextTitle(userInput : String) {
 
-        _textInserted.value = userInput
-        myList.add(clicksTitle, DataValues(title = _textInserted.value!!, _date = _dateAssigned.value.toString(), quntity = clicksTitle  ))
-        _quantityOfList.value = clicksTitle
-        clicksTitle++  }
+     _textInserted.value = userInput
+     myList.add(clicksTitle, DataValues(title = _textInserted.value!!, _date = _dateAssigned.value.toString(), quntity = clicksTitle  ))
+     _quantityOfList.value = clicksTitle
+     clicksTitle++  }
 
-fun setTitleEdited(newTitle: String) {
+    fun setTitleEdited(newTitle: String) {
     _textInserted.value = newTitle
     myList.set(clicksTitle-1, DataValues(title = _textInserted.value.toString())  )
-}
+    }
 
     fun setDecription (newDecription: String){
         _detailedText.value = newDecription
@@ -89,5 +91,9 @@ fun setTitleEdited(newTitle: String) {
         _quantityOfList.value = myList[requiredIndext].quntity
         _isFinished.value = myList[requiredIndext].finishing
         _isImportant.value = myList[requiredIndext].urgency
+    }
+
+    fun storedateBeCompared(value: Long){
+        _comparing.value = value
     }
 }
