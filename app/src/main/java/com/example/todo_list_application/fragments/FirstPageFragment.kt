@@ -19,7 +19,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 
 class FirstPageFragment : Fragment() {
     private var binding: FragmentFirstPageBinding? = null
-
+    private var newIndex: Int = 0
     private val sharedViewModel : ListViewModel  by activityViewModels()
 
     override fun onCreateView(
@@ -44,11 +44,21 @@ class FirstPageFragment : Fragment() {
 //        val cardClicking = Detail_Item_Fragment().onCardClick()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun sortText(){
        val myText = binding?.EditWritingList?.text.toString()
-        sharedViewModel.addTextTitle(myText)
-        findNavController().navigate(R.id.action_firstPageFragment_to_detail_List_Fragment)
+        sharedViewModel.addTextTitle(myText, newIndex)
+        val action = FirstPageFragmentDirections.actionFirstPageFragmentToDetailListFragment (
+            title = myText, index = newIndex , description = ""
+                )
+        ++newIndex
+        findNavController().navigate(action)
+
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     }

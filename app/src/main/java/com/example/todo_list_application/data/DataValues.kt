@@ -20,11 +20,10 @@ import java.time.format.DateTimeFormatter
 
 
 data class DataValues (
-    var quntity: Int = 0,
-    val title : String = "",
-    val urgency: Boolean = false,
+    var title : String = "",
+    var urgency: Boolean = false,
     var _date: String = ListViewModel().getPickupOptions(), //= Detail_List_Fragment().setTheDate()
     var finishing: Boolean = false,
-    val detail: String = "",
+    var detail: String = "",
     )
 

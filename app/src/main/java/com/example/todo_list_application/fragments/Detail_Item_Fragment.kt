@@ -70,7 +70,6 @@ class Detail_Item_Fragment : Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun isFinished() {
         var checkingButton = binding?.titleText?.paintFlags!!.or(Paint.STRIKE_THRU_TEXT_FLAG)
         if (finishCount % 2 == 0) {
@@ -83,10 +82,10 @@ class Detail_Item_Fragment : Fragment() {
         }
     }
 
-fun goEdite() {
-   val requiredEdit = binding?.countNumber?.text
-    sharedViewModel.getReqiredTitleonEditPress(requiredEdit.toString().toInt())
- }
+//fun goEdite() {
+//   val requiredEdit = binding?.countNumber?.text
+//    sharedViewModel.getReqiredTitleonEditPress(requiredEdit.toString().toInt())
+// }
 
  fun convertMillisecondsToReadableDate(
         dateMilliseconds: Long,

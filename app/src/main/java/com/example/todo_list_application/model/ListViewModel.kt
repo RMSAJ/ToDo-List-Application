@@ -22,10 +22,9 @@ class ListViewModel: ViewModel()  {
 private var binding: FragmentFirstPageBinding? = null
 // DEFINING LISTS QUANTITY
    private var _quantityOfList = MutableLiveData <Int>()
-    val quantityOfList: LiveData<Int> get() = _quantityOfList
+    var quantityOfList  = _quantityOfList
     // the title inserted by the user
-   private val _textInserted = MutableLiveData <String>()
-    val textInserted: LiveData<String> = _textInserted
+    var _textInserted = MutableLiveData <String>()
     // date_to be made
    private val _dateAssigned = MutableLiveData <String>()
     val dateAssigned = _dateAssigned
@@ -38,27 +37,28 @@ private var binding: FragmentFirstPageBinding? = null
     val _comparing =  MutableLiveData<Long>()
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun addTextTitle(userInput : String) {
-
+    fun addTextTitle(userInput : String, index: Int) {
+        _quantityOfList.value = index
      _textInserted.value = userInput
-     myList.add(clicksTitle, DataValues(title = _textInserted.value!!, _date = _dateAssigned.value.toString(), quntity = clicksTitle  ))
-     _quantityOfList.value = clicksTitle
-     clicksTitle++  }
+     myList.add(index, DataValues(title = _textInserted.value!! ))
+      }
 
-    fun setTitleEdited(newTitle: String) {
+    fun setTitleEdited(newTitle: String, index: Int) {
     _textInserted.value = newTitle
-    myList.set(clicksTitle-1, DataValues(title = _textInserted.value.toString())  )
+   _quantityOfList.value = index
+    myList.set(index, DataValues(title = _textInserted.value.toString())  )
     }
 
-    fun setDecription (newDecription: String){
+    fun setDecription (newDecription: String, index: Int){
         _detailedText.value = newDecription
-        myList.set(clicksTitle-1, DataValues(detail = _detailedText.value.toString()))
+        _quantityOfList.value = index
+        myList.set(index, DataValues(detail = _detailedText.value.toString()))
     }
 
-    fun setDate(currentDate: String) {
+    fun setDate(currentDate: String, index: Int) {
         _dateAssigned.value = currentDate
-        myList.set(clicksTitle-1, DataValues(_date = _dateAssigned.value!!) )
+        _quantityOfList.value = index
+        myList.set(index, DataValues(_date = _dateAssigned.value!!) )
     }
 
      fun getPickupOptions(): String {
@@ -79,19 +79,19 @@ private var binding: FragmentFirstPageBinding? = null
     @RequiresApi(Build.VERSION_CODES.O)
     fun setIsFinished(isChecked:Boolean){
       _isFinished.value = isChecked == true
-       finishedClick = 0
+
       myList.add(finishedClick, DataValues(finishing = _isFinished.value!!))
       ++finishedClick
     }
 
-    fun getReqiredTitleonEditPress(requiredIndext: Int) {
-        _textInserted.value = myList[requiredIndext].title
-        _dateAssigned.value = myList[requiredIndext]._date
-        _detailedText.value = myList[requiredIndext].detail
-        _quantityOfList.value = myList[requiredIndext].quntity
-        _isFinished.value = myList[requiredIndext].finishing
-        _isImportant.value = myList[requiredIndext].urgency
-    }
+//    fun getReqiredTitleonEditPress(requiredIndext: Int) {
+//        _textInserted.value = myList[requiredIndext].title
+//        _dateAssigned.value = myList[requiredIndext]._date
+//        _detailedText.value = myList[requiredIndext].detail
+//        _quantityOfList.value = myList[requiredIndext].quntity
+//        _isFinished.value = myList[requiredIndext].finishing
+//        _isImportant.value = myList[requiredIndext].urgency
+//    }
     fun storedateBeCompared(value: Long){
         _comparing.value = value
     }

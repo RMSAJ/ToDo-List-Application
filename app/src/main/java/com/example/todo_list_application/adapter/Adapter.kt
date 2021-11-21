@@ -48,12 +48,10 @@ private val itemLists: MutableList<DataValues> = myList) : RecyclerView.Adapter<
         return DoListViewHolder(adpterLayout)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onBindViewHolder(holder: DoListViewHolder, position: Int) {
         val item = itemLists[position]
         holder.checkView?.setOnClickListener { item.finishing }
-        holder.numberedView?.text = item.quntity.toString()
         holder.titleView?.text = item.title
         holder.dateTextView?.text = item._date
         holder.cardView?.setOnClickListener {
@@ -68,8 +66,8 @@ private val itemLists: MutableList<DataValues> = myList) : RecyclerView.Adapter<
         holder.editButtonView?.setOnClickListener {
             val action = FirstPageFragmentDirections.actionFirstPageFragmentToDetailListFragment (
                 title = item.title,
-                description = item.detail
-                    )
+                description = item.detail,
+                   index = position )
 
             holder.itemView.findNavController().navigate(action)
         }

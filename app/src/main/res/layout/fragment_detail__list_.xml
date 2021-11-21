@@ -38,7 +38,7 @@
                     android:layout_height="match_parent"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:text="@{liveviewmodel.textInserted}" />
+                    android:text="" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -59,9 +59,7 @@
                     android:layout_height="200dp"
                     android:gravity="start"
                     android:inputType="textPersonName"
-                    android:text="@{liveviewmodel.detailedText}"
-
-
+                    android:text=""
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,14 +106,6 @@
                 app:layout_constraintTop_toBottomOf="@id/save_continue_Button"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <TextView
-                android:id="@+id/indexNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:text="@{liveviewmodel.quantityOfList.toString()}"/>
-
             <Button
                 android:id="@+id/DateButton"
                 style="?android:spinnerStyle"
@@ -123,7 +113,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:backgroundTint="@color/grey"
-
                 android:onClick="@{() -> detailfragment.showDatePicker() }"
                 android:text="@{liveviewmodel.dateAssigned}"
                 android:textColor="@color/black"
@@ -138,8 +127,5 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
 </layout>

@@ -25,12 +25,12 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.Calendar.*
-var index: Int = 0
+
 class Detail_List_Fragment : Fragment() {
 
-    private var binding: FragmentDetailListBinding? = null
+        private var binding: FragmentDetailListBinding? = null
     private val sharedViewModel: ListViewModel by activityViewModels()
-
+    var index: Int = sharedViewModel.quantityOfList.value!!
     companion object {
         val title = "title"
         val description = "description"
@@ -66,7 +66,6 @@ class Detail_List_Fragment : Fragment() {
             detailfragment = this@Detail_List_Fragment
             DateButton.setOnClickListener {
                 // create Intstance of the date Picker
-                val datePickerDialog = DateFragment()
                 val supportFragmentManager = activity?.supportFragmentManager
                 // Set Fragment Result
                 supportFragmentManager?.setFragmentResultListener(
@@ -96,7 +95,7 @@ class Detail_List_Fragment : Fragment() {
                 // here convert it to String and show it to the user to be user frindly
                 date = convertMillisecondsToReadableDate(it, "EEE, MMM dd ")
                 // we store the date in the view model
-                sharedViewModel.setDate(date)
+                sharedViewModel.setDate(date, index)
                 // we store the comparison
                 sharedViewModel.storedateBeCompared(comparable)
             }
@@ -113,8 +112,9 @@ class Detail_List_Fragment : Fragment() {
             val myTitle = binding?.EditWritingList?.text.toString()
             val mydesrition = binding?.EditDescrition?.text.toString()
             val changedDate = binding?.DateButton?.text.toString()
-            sharedViewModel.setDate(changedDate)
-            sharedViewModel.setTitleEdited(myTitle)
+            sharedViewModel.setDecription(mydesrition, index)
+            sharedViewModel.setDate(changedDate, index)
+            sharedViewModel.setTitleEdited(myTitle, index)
             findNavController().navigate(R.id.action_detail_List_Fragment_to_firstPageFragment)
         }
 
@@ -129,12 +129,13 @@ class Detail_List_Fragment : Fragment() {
             return format.format(Date(dateMilliseconds))
         }
     override fun onDestroy() {
-       val myTitle = binding?.EditWritingList?.text.toString()
-        val mydesrition = binding?.EditDescrition?.text.toString()
-        val changedDate = binding?.DateButton?.text.toString()
-        sharedViewModel.setTitleEdited(myTitle)
-        sharedViewModel.setDate(changedDate)
+//       val myTitle = binding?.EditWritingList?.text.toString()
+//        val mydesrition = binding?.EditDescrition?.text.toString()
+//        val changedDate = binding?.DateButton?.text.toString()
+//        sharedViewModel.setTitleEdited(myTitle, index)
+//        sharedViewModel.setDate(changedDate, index)
         super.onDestroy()
+        binding = null
     }
 
 fun compareTime() {
