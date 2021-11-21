@@ -92,7 +92,6 @@ private var binding: FragmentFirstPageBinding? = null
         _isFinished.value = myList[requiredIndext].finishing
         _isImportant.value = myList[requiredIndext].urgency
     }
-
     fun storedateBeCompared(value: Long){
         _comparing.value = value
     }

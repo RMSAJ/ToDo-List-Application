@@ -25,7 +25,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.Calendar.*
-
+var index: Int = 0
 class Detail_List_Fragment : Fragment() {
 
     private var binding: FragmentDetailListBinding? = null
@@ -38,15 +38,14 @@ class Detail_List_Fragment : Fragment() {
 
     lateinit var date: String
      var comparable: Long = 0
-
     //val  getInsertedText = sharedViewModel.textInserted.value
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             binding?.EditWritingList?.setText(it.getString(title))
             binding?.EditDescrition?.setText(it.getString(description))
+               index = it.getInt("index")
         }
-
     }
 
     override fun onCreateView(
@@ -57,7 +56,6 @@ class Detail_List_Fragment : Fragment() {
         val fragmentBinding = FragmentDetailListBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,22 +78,26 @@ class Detail_List_Fragment : Fragment() {
                         DateButton.text = date
                     }
                 }
-
             }
-
             compareTime()
-
         }
     }
         fun showDatePicker() {
+            // prepare the calender to be selectable
             val datePicker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select").setSelection(MaterialDatePicker.todayInUtcMilliseconds())
                 .build()
+            // show it in the secreen
             datePicker.show(parentFragmentManager, "DatePicker")
+            // the click of the lestiner in side the table of calender
             datePicker.addOnPositiveButtonClickListener {
+                // saving the value below ( the type is long) we use it  for the comparison
                 comparable = it
+                // here convert it to String and show it to the user to be user frindly
                 date = convertMillisecondsToReadableDate(it, "EEE, MMM dd ")
+                // we store the date in the view model
                 sharedViewModel.setDate(date)
+                // we store the comparison
                 sharedViewModel.storedateBeCompared(comparable)
             }
              fun convertMillisecondsToReadableDate(
@@ -107,21 +109,18 @@ class Detail_List_Fragment : Fragment() {
             }
         }
 
-
         fun onSave () {
             val myTitle = binding?.EditWritingList?.text.toString()
             val mydesrition = binding?.EditDescrition?.text.toString()
             val changedDate = binding?.DateButton?.text.toString()
             sharedViewModel.setDate(changedDate)
             sharedViewModel.setTitleEdited(myTitle)
-
             findNavController().navigate(R.id.action_detail_List_Fragment_to_firstPageFragment)
         }
 
     fun onCancel() {
         findNavController().navigate(R.id.action_detail_List_Fragment_to_firstPageFragment)
     }
-
         private fun convertMillisecondsToReadableDate(
             dateMilliseconds: Long,
             datePattern: String
@@ -129,53 +128,29 @@ class Detail_List_Fragment : Fragment() {
             val format = SimpleDateFormat(datePattern, Locale.getDefault())
             return format.format(Date(dateMilliseconds))
         }
-
-
     override fun onDestroy() {
        val myTitle = binding?.EditWritingList?.text.toString()
         val mydesrition = binding?.EditDescrition?.text.toString()
         val changedDate = binding?.DateButton?.text.toString()
-
         sharedViewModel.setTitleEdited(myTitle)
         sharedViewModel.setDate(changedDate)
         super.onDestroy()
     }
 
 fun compareTime() {
-
     if (sharedViewModel._comparing.value == null) {
         Toast.makeText(context,"pls chose Date",Toast.LENGTH_LONG).show()
     }
-
     else if (sharedViewModel._comparing.value!! < getInstance().timeInMillis  ) {
         Toast.makeText(context,"Times up!!!!!! ",Toast.LENGTH_LONG).show()
     }
-
     else Toast.makeText(context,"GooodBooy",Toast.LENGTH_LONG).show()
-
 }
-
-
-
-
         fun SaveButten() {
 
         }
-
         fun cancelButton() {
 
         }
-
-
-//    fun setTheDate() {
-//
-//        var dateinput = binding!!.dateText.text
-//        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-//        val date = LocalDate.parse(dateinput, formatter)
-//        sharedViewModel.setDate(date)
-//
-//    }
-
-
     }
 

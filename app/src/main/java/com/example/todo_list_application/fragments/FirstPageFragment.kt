@@ -17,11 +17,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 
-
 class FirstPageFragment : Fragment() {
-
-
-
     private var binding: FragmentFirstPageBinding? = null
 
     private val sharedViewModel : ListViewModel  by activityViewModels()
@@ -55,23 +51,5 @@ class FirstPageFragment : Fragment() {
         findNavController().navigate(R.id.action_firstPageFragment_to_detail_List_Fragment)
     }
 
-    fun currentTime() {
-//
-////        val is24HrsSystem = is24HourFormat(requireContext())
-////        val timeFormat = when(is24HrsSystem){
-////            true -> TimeFormat.CLOCK_24H
-////            else -> TimeFormat.CLOCK_12H
-//
-//        var dateTimePicker = MaterialDatePicker.Builder.datePicker()
-//            .setTitleText("chose the date")
-//            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-//            .toString()
-//    }
-
-//    fun applyingAdapter() {
-//
-//        binding?.todoRecycler?.adapter = Adapterdo(this.requireContext())
-//    }
     }
 
-}

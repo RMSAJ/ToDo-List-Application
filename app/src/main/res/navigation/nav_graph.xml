@@ -29,6 +29,9 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <argument
+            android:name="index"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/detail_Item_Fragment"

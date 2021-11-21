@@ -36,21 +36,15 @@ class DateFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
         val day = calender.get(Calendar.DAY_OF_MONTH)
         // return new date instance
         return DatePickerDialog(requireActivity(), this, year, month, day)
-
     }
-
-
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         calender.set(Calendar.YEAR, year)
         calender.set(Calendar.MONTH, month)
-        calender.set(Calendar.DAY_OF_MONTH, dayOfMonth )
+        calender.set(Calendar.DAY_OF_MONTH, dayOfMonth)
         val slectedDate = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(calender.time)
         val selectedDateBundle = Bundle()
         selectedDateBundle.putString("SELECTED_DATE", slectedDate)
-
-        setFragmentResult("REQUEST_KEY",selectedDateBundle )
+        setFragmentResult("REQUEST_KEY", selectedDateBundle)
     }
-
-
 }

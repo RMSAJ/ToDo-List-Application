@@ -31,7 +31,6 @@ import java.util.*
 import kotlin.concurrent.timerTask
 import com.example.todo_list_application.R.color.lightYellow as lightYellow1
 
-
 class Detail_Item_Fragment : Fragment() {
     var isImportantcount = 0
     var finishCount = 0
@@ -56,7 +55,6 @@ class Detail_Item_Fragment : Fragment() {
             listviewmodel = sharedViewModel
             detailedFragment = this@Detail_Item_Fragment
         }
-
     }
 
     @SuppressLint("ResourceAsColor")
@@ -88,7 +86,6 @@ class Detail_Item_Fragment : Fragment() {
 fun goEdite() {
    val requiredEdit = binding?.countNumber?.text
     sharedViewModel.getReqiredTitleonEditPress(requiredEdit.toString().toInt())
-
  }
 
  fun convertMillisecondsToReadableDate(
@@ -98,6 +95,4 @@ fun goEdite() {
         val format = SimpleDateFormat(datePattern, Locale.getDefault())
         return format.format(Date(dateMilliseconds))
     }
-
-
 }

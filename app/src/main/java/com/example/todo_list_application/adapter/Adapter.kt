@@ -37,7 +37,7 @@ private val itemLists: MutableList<DataValues> = myList) : RecyclerView.Adapter<
         val numberedView: TextView? = view?.findViewById(R.id.countNumber)
         val deletButton: ImageView? = view?.findViewById(R.id.deleteImage)
 
-       val detailTitle: TextView? = view?.findViewById(R.id.Edit_writing_list)
+//       val detailTitle: TextView? = view?.findViewById(R.id.Edit_writing_list)
 //        val detaiButton: Button? = view?.findViewById(R.id.save_continue_Button)
 
     }
